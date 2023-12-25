@@ -1,11 +1,6 @@
 double epsilon = 1E-15;
 
-
-boolean circleContainsPoint(Circle c, Point p) {
-	return c.getCenter().distanceTo(p) < c.getRad() + epsilon;
-}
-
-Circle createUnitCircle(Point p, Point q){
+Circle  createUnitCircle(Point p, Point q){
     Point midpoint = p.midPoint(q);	
     double distBetween = Math.sqrt(1 - Math.pow(midpoint.distanceTo(q), 2)); 
     Point center = midpoint.moveTo(midpoint.angleTo(q) + Math.PI / 2, distBetween);
@@ -22,7 +17,7 @@ int findMaxDiscCoverage(ImList<Point> points){
                 Circle cir = createUnitCircle(points.get(j), points.get(j+i));
                 int coverage = 0;
                 for (Point point : points){
-                    if (circleContainsPoint(cir, point)){
+                    if (cir.contains(point)){
                             coverage += 1;
                     }
                 }
